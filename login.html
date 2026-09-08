@@ -176,7 +176,7 @@
                 if (response.ok) {
                     localStorage.setItem('userEmail', email);
                     localStorage.setItem('userName', data.name || 'Guru');
-                    window.location.href = 'index.html';
+                    window.location.href = 'dashboard.html';
                 } else {
                     errorDiv.innerText = data.error || 'Login gagal';
                     errorDiv.classList.remove('hidden');
