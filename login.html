@@ -20,7 +20,10 @@
             </div>
             <div>
                 <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang Kembali</h2>
-                <p class="mt-2 text-sm text-slate-500">Silakan masuk menggunakan email Anda (Jika belum terdaftar, akun akan otomatis dibuat).</p>
+                <p class="text-center text-sm text-slate-500">
+    Belum memiliki akun? 
+    <a href="register.html" class="font-semibold text-indigo-600 hover:text-indigo-700 transition">Daftar Sekarang</a>
+</p>
             </div>
 
             <!-- Login Form -->
@@ -55,38 +58,41 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const errorDiv = document.getElementById('errorMessage');
-            const submitBtn = document.getElementById('submitBtn');
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+        const errorDiv = document.getElementById('errorMessage');
+        const submitBtn = document.getElementById('submitBtn');
 
-            errorDiv.classList.add('hidden');
-            submitBtn.innerText = "Memproses...";
+        errorDiv.classList.add('hidden');
+        submitBtn.innerText = "Memproses...";
 
-            try {
-                const response = await fetch('/api/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password })
-                });
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
 
-                const data = await response.json();
-                if (response.ok) {
-                    localStorage.setItem('userEmail', email);
-                    window.location.href = 'index.html';
-                } else {
-                    errorDiv.innerText = data.error || 'Login gagal';
-                    errorDiv.classList.remove('hidden');
-                }
-            } catch (err) {
-                errorDiv.innerText = 'Terjadi gangguan jaringan.';
+            const data = await response.json();
+            if (response.ok) {
+                // Simpan email dan nama ke penyimpanan lokal browser
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('userName', data.name || '');
+                window.location.href = 'index.html';
+            } else {
+                errorDiv.innerText = data.error || 'Login gagal';
                 errorDiv.classList.remove('hidden');
-            } finally {
-                submitBtn.innerText = "Masuk Akun";
             }
-        });
-    </script>
+        } catch (err) {
+            // Memberikan instruksi penanganan error yang lebih jelas bagi user
+            errorDiv.innerText = 'Koneksi API Gagal. Gunakan perintah "vercel dev" untuk menjalankan lokal.';
+            errorDiv.classList.remove('hidden');
+        } finally {
+            submitBtn.innerText = "Masuk Akun";
+        }
+    });
+</script>
 </body>
 </html>
