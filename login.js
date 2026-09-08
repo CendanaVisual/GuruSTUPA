@@ -13,24 +13,12 @@ export default async function handler(req, res) {
   try {
     await client.connect();
 
-    // 1. Buat tabel user secara otomatis jika belum ada di database Anda
-    await client.query(`
-      CREATE TABLE IF NOT EXISTS users (
-        id SERIAL PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-      );
-    `);
-
-    // 2. Cek apakah user sudah terdaftar
+    // Ambil data user berdasarkan email
     const userRes = await client.query('SELECT * FROM users WHERE email = $1', [email]);
     
     if (userRes.rows.length === 0) {
-      // Pendaftaran Otomatis untuk kemudahan pengetesan pertama kali
-      await client.query('INSERT INTO users (email, password) VALUES ($1, $2)', [email, password]);
       await client.end();
-      return res.status(200).json({ success: true, message: 'Registrasi & Login Berhasil (User Baru dibuat)' });
+      return res.status(401).json({ error: 'Akun belum terdaftar. Silakan daftar terlebih dahulu.' });
     }
 
     const user = userRes.rows[0];
@@ -40,7 +28,7 @@ export default async function handler(req, res) {
     }
 
     await client.end();
-    return res.status(200).json({ success: true, message: 'Berhasil Masuk' });
+    return res.status(200).json({ success: true, name: user.name, message: 'Berhasil Masuk' });
 
   } catch (error) {
     console.error(error);
