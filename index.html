@@ -20,8 +20,8 @@
             <div class="flex justify-between h-16 items-center">
                 <!-- Logo -->
                 <div class="flex items-center gap-2">
-                    <span class="text-2xl font-bold text-indigo-600">Siap<span class="text-slate-800">Guru</span></span>
-                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-0.5 rounded-full font-semibold">AI</span>
+                    <span class="text-2xl font-bold text-indigo-600">GuruSTUPA<span class="text-slate-800">AI</span></span>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-0.5 rounded-full font-semibold">Neon DB Connected</span>
                 </div>
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center gap-8">
@@ -29,9 +29,11 @@
                     <a href="#cara-kerja" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Cara Kerja</a>
                     <a href="#pricing" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Harga</a>
                     <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">FAQ</a>
+                    <!-- MENU SQL EDITOR YANG DITINGKATKAN (HANYA MUNCUL JIKA SUDAH LOGIN) -->
+                    <a href="#sql-editor" id="sqlNavBtn" class="hidden text-sm font-bold text-indigo-600 hover:text-indigo-800 transition">⚠️ SQL Editor</a>
                 </div>
-                <!-- CTA -->
-                <div class="hidden md:flex items-center gap-4">
+                <!-- CTA NAV (AKAN BERUBAH SECARA DINAMIS LEWAT JAVASCRIPT) -->
+                <div class="hidden md:flex items-center gap-4" id="authNav">
                     <a href="login.html" class="text-sm font-medium text-slate-600 hover:text-slate-900">Masuk</a>
                     <a href="login.html" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition shadow-sm">Mulai Gratis</a>
                 </div>
@@ -52,10 +54,52 @@
             <a href="#pricing" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-600">Harga</a>
             <a href="#faq" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-600">FAQ</a>
             <hr class="border-slate-100">
-            <a href="login.html" class="block text-sm font-medium text-slate-600">Masuk</a>
-            <a href="login.html" class="block bg-indigo-600 text-white text-center text-sm font-medium px-4 py-2 rounded-lg">Mulai Gratis</a>
+            <div class="space-y-2" id="mobileAuthNav">
+                <a href="login.html" class="block text-sm font-medium text-slate-600 py-1">Masuk</a>
+                <a href="login.html" class="block bg-indigo-600 text-white text-center text-sm font-medium px-4 py-2 rounded-lg">Mulai Gratis</a>
+            </div>
         </div>
     </nav>
+
+    <!-- INTERACTIVE NEON SQL EDITOR SECTION (AKAN AKTIF & MUNCUL JIKA USER LOGIN) -->
+    <section id="sql-editor" class="py-12 bg-slate-900 text-white border-y border-slate-800 hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full font-mono uppercase">Neon Cloud Postgres Console</span>
+                    <h2 class="text-2xl font-bold mt-2">SQL Query Editor Interaktif</h2>
+                    <p class="text-sm text-slate-400">Tulis dan uji query SQL Anda langsung ke kluster database Neon Anda.</p>
+                </div>
+                <button onclick="logout()" class="text-xs bg-red-600/20 hover:bg-red-600 hover:text-white text-red-400 font-bold px-4 py-2 rounded-lg transition">Keluar Sesi</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Query Input Panel -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <label class="block text-xs font-bold text-indigo-400 uppercase font-mono mb-2">Perintah SQL</label>
+                        <textarea id="sqlQuery" rows="6" class="w-full bg-transparent border-0 focus:ring-0 font-mono text-sm text-emerald-400 resize-none outline-none" placeholder="SELECT * FROM users LIMIT 10;"></textarea>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="runQuery()" class="bg-indigo-600 hover:bg-indigo-700 px-5 py-2.5 rounded-lg text-sm font-semibold transition">Jalankan Query (Run)</button>
+                        <button onclick="clearQuery()" class="border border-slate-700 hover:bg-slate-800 px-4 py-2.5 rounded-lg text-sm transition text-slate-300">Bersihkan</button>
+                    </div>
+                    <p class="text-xs text-slate-500">Struktur Tabel Default: <code class="bg-slate-800 px-1.5 py-0.5 rounded text-indigo-300">users (id, email, password, name, created_at)</code></p>
+                </div>
+
+                <!-- Query Result Panel -->
+                <div class="lg:col-span-7 bg-slate-950 p-6 rounded-xl border border-slate-800 flex flex-col min-h-[250px]">
+                    <div class="text-xs font-bold text-slate-400 uppercase border-b border-slate-800 pb-2 mb-4 flex justify-between">
+                        <span>Hasil Tabel Output</span>
+                        <span id="rowCount" class="text-indigo-400 font-mono"></span>
+                    </div>
+                    <div class="flex-grow overflow-x-auto" id="resultContainer">
+                        <p class="text-xs text-slate-500 italic">Ketik kueri Anda di sebelah kiri lalu klik Jalankan Query.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- 2. HERO SECTION -->
     <section class="py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-indigo-50/50 to-white">
@@ -74,36 +118,18 @@
             </p>
             <!-- CTA Buttons -->
             <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
-                <a href="login.html" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-xl transition shadow-lg shadow-indigo-200 text-center">
+                <a href="login.html" id="heroCTA" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-xl transition shadow-lg shadow-indigo-200 text-center">
                     Coba Sekarang, Gratis!
                 </a>
                 <a href="#cara-kerja" class="w-full sm:w-auto border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-semibold px-8 py-4 rounded-xl transition text-center">
                     Lihat Demo
                 </a>
             </div>
-            <!-- Stats -->
-            <div class="mt-16 pt-12 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-                <div>
-                    <p class="text-3xl font-extrabold text-slate-950">15,000+</p>
-                    <p class="text-sm text-slate-500 mt-1">Guru Terbantu</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-extrabold text-slate-950">120,000+</p>
-                    <p class="text-sm text-slate-500 mt-1">Modul Terbuat</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-extrabold text-slate-950">4.9/5</p>
-                    <p class="text-sm text-slate-500 mt-1">Rating Kepuasan</p>
-                </div>
-                <div>
-                    <p class="text-3xl font-extrabold text-slate-950">100%</p>
-                    <p class="text-sm text-slate-500 mt-1">Sesuai Kemendikbud</p>
-                </div>
-            </div>
         </div>
     </section>
 
     <!-- 3. FEATURES (GRID CARD) -->
+    <!-- (Kode fitur tetap dipertahankan seperti aslinya...) -->
     <section id="fitur" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -140,6 +166,7 @@
     </section>
 
     <!-- 4. HOW IT WORKS / DEMO -->
+    <!-- (Kode tata cara kerja dipertahankan...) -->
     <section id="cara-kerja" class="py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -280,15 +307,14 @@
     </section>
 
     <!-- 7. FAQ -->
+    <!-- (Kode FAQ dipertahankan...) -->
     <section id="faq" class="py-20 bg-white">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-slate-900">Pertanyaan yang Sering Diajukan</h2>
                 <p class="mt-4 text-slate-600">Temukan jawaban atas pertanyaan seputar GuruSTUPA AI di sini.</p>
             </div>
-            <!-- Accordion -->
             <div class="space-y-4" x-data="{ active: null }">
-                <!-- FAQ 1 -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden">
                     <button @click="active = (active === 1 ? null : 1)" class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 transition">
                         <span>Apakah Modul Ajar yang dibuat sudah sesuai Kurikulum Merdeka?</span>
@@ -298,7 +324,6 @@
                         Ya, modul yang kami hasilkan disesuaikan secara dinamis mengikuti standar dan komponen yang disyaratkan oleh Kemendikbudristek untuk Kurikulum Merdeka.
                     </div>
                 </div>
-                <!-- FAQ 2 -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden">
                     <button @click="active = (active === 2 ? null : 2)" class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 transition">
                         <span>Apakah hasil modulnya bisa saya edit kembali?</span>
@@ -308,7 +333,6 @@
                         Tentu saja. Anda bisa menyalin teks modul tersebut ke Microsoft Word, Google Docs, atau mengunduhnya langsung dalam format file yang mudah diedit kembali.
                     </div>
                 </div>
-                <!-- FAQ 3 -->
                 <div class="border border-slate-200 rounded-xl overflow-hidden">
                     <button @click="active = (active === 3 ? null : 3)" class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 transition">
                         <span>Metode pembayaran apa saja yang tersedia?</span>
@@ -323,6 +347,7 @@
     </section>
 
     <!-- 8. FOOTER -->
+    <!-- (Kode Footer dipertahankan...) -->
     <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="space-y-4">
@@ -355,5 +380,124 @@
         </div>
     </footer>
 
+    <!-- SCRIPT OTENTIKASI & CONSOLE SQL EDITOR -->
+    <script>
+        // Memeriksa Status Log Masuk Pengguna
+        const userEmail = localStorage.getItem('userEmail');
+        const userName = localStorage.getItem('userName') || 'Guru';
+
+        if (userEmail) {
+            // Aktifkan Menu & Section SQL Editor di Antarmuka Utama
+            const sqlNavBtn = document.getElementById('sqlNavBtn');
+            const sqlSection = document.getElementById('sql-editor');
+            if (sqlNavBtn) sqlNavBtn.classList.remove('hidden');
+            if (sqlSection) sqlSection.classList.remove('hidden');
+
+            // Perbarui Navigasi Desktop
+            const authNav = document.getElementById('authNav');
+            if (authNav) {
+                authNav.innerHTML = `
+                    <span class="text-sm font-medium text-slate-700">Halo, <strong class="text-indigo-600">${userName}</strong></span>
+                    <button onclick="logout()" class="text-sm text-red-500 font-semibold hover:text-red-700 transition">Keluar</button>
+                `;
+            }
+
+            // Perbarui Navigasi Mobile
+            const mobileAuthNav = document.getElementById('mobileAuthNav');
+            if (mobileAuthNav) {
+                mobileAuthNav.innerHTML = `
+                    <div class="text-sm font-medium text-slate-700 py-1">Halo, <strong>${userName}</strong></div>
+                    <button onclick="logout()" class="w-full bg-red-600 text-white text-center text-sm font-medium px-4 py-2 rounded-lg">Keluar</button>
+                `;
+            }
+
+            // Arahkan Hero CTA Langsung ke SQL Editor
+            const heroCTA = document.getElementById('heroCTA');
+            if (heroCTA) {
+                heroCTA.innerText = "Buka Console SQL Editor";
+                heroCTA.setAttribute('href', '#sql-editor');
+            }
+        }
+
+        // Fungsi Keluar Sesi (Logout)
+        function logout() {
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
+            window.location.reload();
+        }
+
+        // Fungsi Membersihkan Area SQL Query
+        function clearQuery() {
+            document.getElementById('sqlQuery').value = '';
+        }
+
+        // Fungsi Memproses Query SQL ke Database Neon
+        async function runQuery() {
+            const query = document.getElementById('sqlQuery').value;
+            const container = document.getElementById('resultContainer');
+            const rowCountLabel = document.getElementById('rowCount');
+
+            if (!query.trim()) {
+                alert('Tulis perintah kueri SQL terlebih dahulu.');
+                return;
+            }
+
+            container.innerHTML = '<span class="text-xs text-yellow-500 font-mono">Memproses kueri langsung ke kluster Neon...</span>';
+            rowCountLabel.innerText = '';
+
+            try {
+                const res = await fetch('/api/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query })
+                });
+
+                const data = await res.json();
+
+                if (!res.ok) {
+                    container.innerHTML = `<span class="text-xs text-red-400 font-mono">Error: ${data.error}</span>`;
+                    return;
+                }
+
+                if (data.rows.length === 0) {
+                    container.innerHTML = '<span class="text-xs text-slate-500 font-mono">Query sukses dieksekusi. Tidak ada baris data dikembalikan.</span>';
+                    rowCountLabel.innerText = `Baris terdampak: ${data.rowCount || 0}`;
+                    return;
+                }
+
+                rowCountLabel.innerText = `Total Baris: ${data.rows.length}`;
+
+                // Merakit Struktur Tabel Output secara Dinamis
+                let tableHtml = `<table class="min-w-full divide-y divide-slate-800 text-left font-mono text-xs text-slate-300">
+                    <thead class="bg-slate-900 text-slate-400">
+                        <tr>`;
+                
+                // Judul Kolom (Fields)
+                data.fields.forEach(field => {
+                    tableHtml += `<th class="px-3 py-2 border border-slate-800">${field}</th>`;
+                });
+                tableHtml += `</tr></thead><tbody class="divide-y divide-slate-800 bg-transparent">`;
+
+                // Baris Isi Data (Rows)
+                data.rows.forEach(row => {
+                    tableHtml += `<tr>`;
+                    data.fields.forEach(field => {
+                        let cellVal = row[field];
+                        if (typeof cellVal === 'object' && cellVal !== null) {
+                            cellVal = JSON.stringify(cellVal);
+                        }
+                        tableHtml += `<td class="px-3 py-2 border border-slate-800 whitespace-nowrap">${cellVal !== null ? cellVal : 'NULL'}</td>`;
+                    });
+                    tableHtml += `</tr>`;
+                });
+
+                tableHtml += `</tbody></table>`;
+                container.innerHTML = tableHtml;
+
+            } catch (err) {
+                container.innerHTML = `<span class="text-xs text-red-400 font-mono">Koneksi backend terputus. Pastikan Vercel Serverless Anda berjalan baik.</span>`;
+            }
+        }
+    </script>
 </body>
 </html>
