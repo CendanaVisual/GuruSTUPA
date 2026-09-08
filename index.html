@@ -411,12 +411,12 @@
                 `;
             }
 
-            // Arahkan Hero CTA Langsung ke SQL Editor
-            const heroCTA = document.getElementById('heroCTA');
-            if (heroCTA) {
-                heroCTA.innerText = "Buka Console SQL Editor";
-                heroCTA.setAttribute('href', '#sql-editor');
-            }
+            // Arahkan Hero CTA Langsung ke Dashboard jika sudah login
+const heroCTA = document.getElementById('heroCTA');
+if (heroCTA) {
+    heroCTA.innerText = "Buka Dashboard Saya 🚀";
+    heroCTA.setAttribute('href', 'dashboard.html');
+}
         }
 
         // Fungsi Keluar Sesi (Logout)
