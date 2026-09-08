@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuruSTUPA AI - Generator RPP & Modul Ajar Otomatis</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Alpine.js untuk interaksi ringan (Mobile menu & FAQ Accordion) -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <style>
+        html { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans" x-data="{ mobileMenuOpen: false }">
+
+    <!-- 1. NAVBAR -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl font-bold text-indigo-600">Siap<span class="text-slate-800">Guru</span></span>
+                    <span class="bg-indigo-100 text-indigo-800 text-xs px-2 py-0.5 rounded-full font-semibold">AI</span>
+                </div>
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#fitur" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Fitur</a>
+                    <a href="#cara-kerja" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Cara Kerja</a>
+                    <a href="#pricing" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Harga</a>
+                    <a href="#faq" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">FAQ</a>
+                </div>
+                <!-- CTA -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="login.html" class="text-sm font-medium text-slate-600 hover:text-slate-900">Masuk</a>
+                    <a href="login.html" class="bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition shadow-sm">Mulai Gratis</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button @click="mobileMenuOpen = !mobileMenuOpen" class="text-slate-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Dropdown -->
+        <div x-show="mobileMenuOpen" class="md:hidden bg-white border-b border-slate-100 px-4 py-4 space-y-3">
+            <a href="#fitur" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-600">Fitur</a>
+            <a href="#cara-kerja" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-600">Cara Kerja</a>
+            <a href="#pricing" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-600">Harga</a>
+            <a href="#faq" @click="mobileMenuOpen = false" class="block text-sm font-medium text-slate-600">FAQ</a>
+            <hr class="border-slate-100">
+            <a href="login.html" class="block text-sm font-medium text-slate-600">Masuk</a>
+            <a href="login.html" class="block bg-indigo-600 text-white text-center text-sm font-medium px-4 py-2 rounded-lg">Mulai Gratis</a>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <section class="py-20 lg:py-32 overflow-hidden bg-gradient-to-b from-indigo-50/50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Badge -->
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-100 text-indigo-800 mb-6">
+                ✨ Solusi Administrasi Guru Kurikulum Merdeka
+            </span>
+            <!-- Headline -->
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight max-w-4xl mx-auto leading-tight">
+                Buat Modul Ajar & RPP Kurikulum Merdeka <span class="text-indigo-600">Dalam 30 Detik</span>
+            </h1>
+            <!-- Subheadline -->
+            <p class="mt-6 text-lg text-slate-600 max-w-2xl mx-auto">
+                Bantu ringankan beban administrasi mengajar Anda. Dapatkan rancangan pembelajaran yang lengkap, terstruktur, dan siap pakai dengan bantuan AI pintar.
+            </p>
+            <!-- CTA Buttons -->
+            <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="login.html" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-4 rounded-xl transition shadow-lg shadow-indigo-200 text-center">
+                    Coba Sekarang, Gratis!
+                </a>
+                <a href="#cara-kerja" class="w-full sm:w-auto border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 font-semibold px-8 py-4 rounded-xl transition text-center">
+                    Lihat Demo
+                </a>
+            </div>
+            <!-- Stats -->
+            <div class="mt-16 pt-12 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+                <div>
+                    <p class="text-3xl font-extrabold text-slate-950">15,000+</p>
+                    <p class="text-sm text-slate-500 mt-1">Guru Terbantu</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-extrabold text-slate-950">120,000+</p>
+                    <p class="text-sm text-slate-500 mt-1">Modul Terbuat</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-extrabold text-slate-950">4.9/5</p>
+                    <p class="text-sm text-slate-500 mt-1">Rating Kepuasan</p>
+                </div>
+                <div>
+                    <p class="text-3xl font-extrabold text-slate-950">100%</p>
+                    <p class="text-sm text-slate-500 mt-1">Sesuai Kemendikbud</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. FEATURES (GRID CARD) -->
+    <section id="fitur" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Dirancang Khusus untuk Kebutuhan Guru</h2>
+                <p class="mt-4 text-slate-600">Semua tools administrasi pembelajaran yang Anda butuhkan ada di satu tempat.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Generator RPP & Modul Ajar</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Cukup masukkan topik pembelajaran dan tingkat kelas, AI akan menyusun modul lengkap dari pendahuluan hingga asesmen.</p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Penyusun Bank Soal</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Buat pertanyaan ujian pilihan ganda atau esai yang bervariasi secara instan lengkap dengan kunci jawabannya.</p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50/50 hover:shadow-lg transition">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-3">Ide Model Pembelajaran</h3>
+                    <p class="text-slate-600 text-sm leading-relaxed">Dapatkan referensi metode mengajar interaktif seperti Problem Based Learning (PBL) atau Project Based Learning (PjBL) yang seru.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. HOW IT WORKS / DEMO -->
+    <section id="cara-kerja" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Cara Penggunaan yang Sangat Mudah</h2>
+                <p class="mt-4 text-slate-600">Hanya perlu 3 langkah mudah untuk mengunduh modul mengajar Anda.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative">
+                    <span class="absolute top-6 right-6 text-4xl font-extrabold text-indigo-100">01</span>
+                    <h4 class="text-lg font-bold text-slate-950 mb-2">Pilih Identitas Kelas</h4>
+                    <p class="text-sm text-slate-600">Pilih mata pelajaran, jenjang pendidikan, kelas, serta materi atau kompetensi dasar yang ingin diajarkan.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative">
+                    <span class="absolute top-6 right-6 text-4xl font-extrabold text-indigo-100">02</span>
+                    <h4 class="text-lg font-bold text-slate-950 mb-2">Kustomisasi Parameter</h4>
+                    <p class="text-sm text-slate-600">Pilih jenis metode mengajar yang Anda kehendaki serta estimasi alokasi waktu pembelajaran.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm relative">
+                    <span class="absolute top-6 right-6 text-4xl font-extrabold text-indigo-100">03</span>
+                    <h4 class="text-lg font-bold text-slate-950 mb-2">Modul Siap Digunakan</h4>
+                    <p class="text-sm text-slate-600">AI memproses data dan menghasilkan modul ajar lengkap. Anda tinggal menyalin teks atau mengunduhnya.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TESTIMONIALS -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Telah Dipercaya Guru di Seluruh Indonesia</h2>
+                <p class="mt-4 text-slate-600">Ulasan tulus dari rekan guru yang terbantu menghemat waktu administrasi.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50">
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 italic">"Aplikasi ini sangat meringankan beban administrasi kurikulum merdeka. Penyusunan asesmen formatifnya sangat sesuai."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-indigo-500 text-white flex items-center justify-center font-bold text-sm">B</div>
+                        <div>
+                            <h5 class="text-sm font-bold text-slate-950">Budi Santoso, S.Pd.</h5>
+                            <p class="text-xs text-slate-500">Guru SDN 1 Surabaya</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50">
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 italic">"Langkah-langkah kegiatan pembelajaran PBL yang di-generate sangat kreatif dan mudah dipraktikkan langsung di kelas."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-pink-500 text-white flex items-center justify-center font-bold text-sm">S</div>
+                        <div>
+                            <h5 class="text-sm font-bold text-slate-950">Siti Rahma, M.Pd.</h5>
+                            <p class="text-xs text-slate-500">Guru SMPN 2 Bandung</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50">
+                    <p class="text-slate-600 text-sm leading-relaxed mb-6 italic">"Kerja lembur buat RPP mingguan sekarang sudah tidak ada lagi. Sangat direkomendasikan bagi guru yang sibuk."</p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">H</div>
+                        <div>
+                            <h5 class="text-sm font-bold text-slate-950">Hendra Wijaya, S.Pd.</h5>
+                            <p class="text-xs text-slate-500">Guru SMAN 3 Jakarta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PRICING -->
+    <section id="pricing" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-bold text-slate-900 sm:text-4xl">Paket Harga Hemat & Transparan</h2>
+                <p class="mt-4 text-slate-600">Mulai gratis dan upgrade kapan pun Anda membutuhkan akses tak terbatas.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Paket Free -->
+                <div class="bg-white p-8 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-950">Paket Coba-Coba</h4>
+                        <p class="text-slate-500 text-sm mt-1">Sempurna untuk guru yang ingin mencoba fitur dasar AI.</p>
+                        <div class="mt-6 mb-6">
+                            <span class="text-4xl font-extrabold text-slate-950">Rp 0</span>
+                            <span class="text-slate-500 text-sm">/selamanya</span>
+                        </div>
+                        <ul class="space-y-3 border-t border-slate-100 pt-6">
+                            <li class="flex items-center gap-2 text-sm text-slate-600">
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                Buat up to 3 RPP/Modul per bulan
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-slate-600">
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                Akses model dasar AI
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-slate-400 line-through">
+                                Akses Generator Asesmen Premium
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="login.html" class="mt-8 block text-center bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold py-3 rounded-xl transition">Mulai Sekarang</a>
+                </div>
+
+                <!-- Paket Pro -->
+                <div class="bg-white p-8 rounded-2xl border-2 border-indigo-600 shadow-md relative flex flex-col justify-between">
+                    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Paling Populer</span>
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-950">Paket Guru Hebat (Pro)</h4>
+                        <p class="text-slate-500 text-sm mt-1">Akses penuh tanpa batas untuk menghemat waktu setiap hari.</p>
+                        <div class="mt-6 mb-6">
+                            <span class="text-4xl font-extrabold text-slate-950">Rp 49.000</span>
+                            <span class="text-slate-500 text-sm">/bulan</span>
+                        </div>
+                        <ul class="space-y-3 border-t border-slate-100 pt-6">
+                            <li class="flex items-center gap-2 text-sm text-slate-600">
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                Pembuatan Modul/RPP tanpa batas
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-slate-600">
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                Ekspor langsung ke PDF / Word
+                            </li>
+                            <li class="flex items-center gap-2 text-sm text-slate-600">
+                                <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>
+                                Generator Soal & Instrumen Asesmen Premium
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="login.html" class="mt-8 block text-center bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition shadow-lg shadow-indigo-200">Berlangganan Sekarang</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Pertanyaan yang Sering Diajukan</h2>
+                <p class="mt-4 text-slate-600">Temukan jawaban atas pertanyaan seputar GuruSTUPA AI di sini.</p>
+            </div>
+            <!-- Accordion -->
+            <div class="space-y-4" x-data="{ active: null }">
+                <!-- FAQ 1 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button @click="active = (active === 1 ? null : 1)" class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 transition">
+                        <span>Apakah Modul Ajar yang dibuat sudah sesuai Kurikulum Merdeka?</span>
+                        <svg class="w-5 h-5 transform transition-transform" :class="active === 1 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div x-show="active === 1" class="p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
+                        Ya, modul yang kami hasilkan disesuaikan secara dinamis mengikuti standar dan komponen yang disyaratkan oleh Kemendikbudristek untuk Kurikulum Merdeka.
+                    </div>
+                </div>
+                <!-- FAQ 2 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button @click="active = (active === 2 ? null : 2)" class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 transition">
+                        <span>Apakah hasil modulnya bisa saya edit kembali?</span>
+                        <svg class="w-5 h-5 transform transition-transform" :class="active === 2 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div x-show="active === 2" class="p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
+                        Tentu saja. Anda bisa menyalin teks modul tersebut ke Microsoft Word, Google Docs, atau mengunduhnya langsung dalam format file yang mudah diedit kembali.
+                    </div>
+                </div>
+                <!-- FAQ 3 -->
+                <div class="border border-slate-200 rounded-xl overflow-hidden">
+                    <button @click="active = (active === 3 ? null : 3)" class="w-full flex justify-between items-center p-5 text-left font-bold text-slate-900 bg-slate-50 hover:bg-slate-100 transition">
+                        <span>Metode pembayaran apa saja yang tersedia?</span>
+                        <svg class="w-5 h-5 transform transition-transform" :class="active === 3 ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                    </button>
+                    <div x-show="active === 3" class="p-5 border-t border-slate-200 text-sm text-slate-600 leading-relaxed bg-white">
+                        Kami menerima berbagai metode pembayaran lokal yang aman, termasuk transfer bank otomatis, e-wallet (GoPay, OVO, Dana), dan QRIS.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="space-y-4">
+                <span class="text-2xl font-bold text-white">GuruSTUPA<span class="text-indigo-400">AI</span></span>
+                <p class="text-xs text-slate-400 leading-relaxed">Membantu mempercepat administrasi pengajaran guru dengan keandalan kecerdasan buatan.</p>
+            </div>
+            <div>
+                <h5 class="text-white text-sm font-bold mb-4">Fitur Utama</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#" class="hover:text-white transition">Generator RPP</a></li>
+                    <li><a href="#" class="hover:text-white transition">Penyusun Asesmen</a></li>
+                    <li><a href="#" class="hover:text-white transition">Ide Kegiatan Kelas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white text-sm font-bold mb-4">Tautan Penting</h5>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#fitur" class="hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#pricing" class="hover:text-white transition">Daftar Harga</a></li>
+                    <li><a href="#" class="hover:text-white transition">Hubungi Kami</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="text-white text-sm font-bold mb-4">Kontak</h5>
+                <p class="text-xs leading-relaxed text-slate-400">Email: cendanavisual@github.id<br>Alamat: Denpasar, Bali, Indonesia</p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 pt-6 border-t border-slate-800 text-center text-xs text-slate-500">
+            &copy; <span x-text="new Date().getFullYear()"></span> GuruSTUPA AI. Hak Cipta Dilindungi Undang-Undang.
+        </div>
+    </footer>
+
+</body>
+</html>

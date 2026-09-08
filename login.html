@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masuk - GuruSTUPA AI</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen flex flex-col md:flex-row">
+
+    <!-- Sisi Kiri: Form Login -->
+    <div class="w-full md:w-1/2 flex items-center justify-center p-8 sm:p-12 lg:p-20">
+        <div class="w-full max-w-md space-y-8">
+            <div>
+                <a href="index.html" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-indigo-600 font-medium transition">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                    Kembali ke Beranda
+                </a>
+            </div>
+            <div>
+                <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang Kembali</h2>
+                <p class="mt-2 text-sm text-slate-500">Silakan masuk menggunakan email Anda (Jika belum terdaftar, akun akan otomatis dibuat).</p>
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="email" class="block text-sm font-semibold text-slate-700">Alamat Email</label>
+                    <input type="email" id="email" required placeholder="nama@sekolah.sch.id" class="mt-1 block w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-slate-50/50">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-semibold text-slate-700">Kata Sandi</label>
+                    <input type="password" id="password" required placeholder="Masukkan kata sandi minimal 8 karakter" class="mt-1 block w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 text-sm bg-slate-50/50">
+                </div>
+
+                <div id="errorMessage" class="text-xs text-red-500 hidden font-semibold"></div>
+
+                <button type="submit" id="submitBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg transition text-sm">
+                    Masuk Akun
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sisi Kanan: Visual / Bumper Banner -->
+    <div class="hidden md:flex md:w-1/2 bg-slate-900 relative items-center justify-center p-12 text-white overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-950 via-slate-900 to-indigo-900 opacity-90"></div>
+        <div class="relative max-w-lg space-y-6 z-10">
+            <span class="text-xs uppercase tracking-widest font-bold text-indigo-400">Database Connected (Neon)</span>
+            <blockquote class="text-3xl font-extrabold leading-tight">
+                "Uji coba SQL Editor interaktif langsung terhubung dengan database cloud Anda secara instan."
+            </blockquote>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+            const submitBtn = document.getElementById('submitBtn');
+
+            errorDiv.classList.add('hidden');
+            submitBtn.innerText = "Memproses...";
+
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    localStorage.setItem('userEmail', email);
+                    window.location.href = 'index.html';
+                } else {
+                    errorDiv.innerText = data.error || 'Login gagal';
+                    errorDiv.classList.remove('hidden');
+                }
+            } catch (err) {
+                errorDiv.innerText = 'Terjadi gangguan jaringan.';
+                errorDiv.classList.remove('hidden');
+            } finally {
+                submitBtn.innerText = "Masuk Akun";
+            }
+        });
+    </script>
+</body>
+</html>
