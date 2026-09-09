@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Guru - GuruSTUPA AI</title>
+    <title>Dashboard Workspace - GuruSTUPA AI</title>
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -18,288 +18,496 @@
     <!-- HEADER DASHBOARD -->
     <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
-            <!-- Brand -->
             <div class="flex items-center gap-2">
                 <span class="text-2xl font-bold text-indigo-600">GuruSTUPA<span class="text-slate-800">AI</span></span>
-                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">Aktif</span>
+                <span class="bg-emerald-100 text-emerald-800 text-xs px-2.5 py-0.5 rounded-full font-semibold">Neon DB Active</span>
             </div>
-            <!-- Profile & Logout -->
             <div class="flex items-center gap-4">
                 <div class="text-right hidden sm:block">
                     <p class="text-sm font-semibold text-slate-900" id="profileName">Guru Pengajar</p>
                     <p class="text-xs text-slate-500" id="profileEmail">email@sekolah.sch.id</p>
                 </div>
-                <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm" id="avatarLetter">
-                    G
-                </div>
-                <button onclick="logout()" class="text-xs bg-red-50 hover:bg-red-100 text-red-600 font-bold px-3 py-2 rounded-lg transition">
-                    Keluar Sesi
-                </button>
+                <div class="w-10 h-10 rounded-full bg-indigo-600 text-white flex items-center justify-center font-bold text-sm" id="avatarLetter">G</div>
+                <button onclick="logout()" class="text-xs bg-red-50 hover:bg-red-100 text-red-600 font-bold px-3 py-2 rounded-lg transition">Keluar Sesi</button>
             </div>
         </div>
     </header>
 
-    <!-- KONTEN UTAMA -->
-    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow space-y-10">
-        
-        <!-- Header Sambutan -->
-        <div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang, <span class="text-indigo-600" id="welcomeName">Rekan Guru</span>!</h1>
-            <p class="text-sm text-slate-500 mt-1">Pilih salah satu modul asisten AI di bawah untuk mulai menyusun administrasi kelas secara otomatis.</p>
-        </div>
+    <!-- CONTAINER UTAMA -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 flex-grow">
 
-        <!-- GRID MENU KHUSUS SESUAI GAMBAR -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            
-            <!-- 1. Generator RPE -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <span class="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Beta</span>
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-sky-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Generator RPE</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Rincian Pekan Efektif dari kalender akademik.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Analisis CP -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-amber-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Analisis CP</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Analisis Capaian Pembelajaran.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Rencana Pembelajaran Mendalam (Highlight Border) -->
-            <div class="bg-white p-6 rounded-2xl border-2 border-indigo-600 shadow-md hover:shadow-lg transition relative flex flex-col justify-between group cursor-pointer">
-                <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
-                    🎓 Kemendikbudasmen
-                </span>
-                <div class="space-y-4 mt-2">
-                    <div class="w-12 h-12 text-indigo-600 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-indigo-600">Rencana Pembelajaran Mendalam</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">RPM lengkap Kurikulum Merdeka.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. RPP Cinta Kemenag -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <span class="absolute -top-3 right-4 bg-emerald-500 text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
-                    ★ Kemenag
-                </span>
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-pink-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">RPP Cinta Kemenag</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Rencana Pelaksanaan Pembelajaran berbasis Cinta.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. RPM Kokurikuler -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <span class="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Beta</span>
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-orange-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">RPM Kokurikuler</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">RPM Kegiatan Kokurikuler.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. LKPD -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-emerald-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">LKPD</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Lembar Kerja Murid Kurikulum Merdeka.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Jurnal Harian -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-teal-600 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Jurnal Harian</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Jurnal mengajar harian guru.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Asesmen Lengkap -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-indigo-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Asesmen Lengkap</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Kisi-Kisi + Kartu Soal + Soal Sumatif (1x generate).</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Buat PPT -->
-            <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
-                <span class="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Beta</span>
-                <div class="space-y-4">
-                    <div class="w-12 h-12 text-indigo-500 flex items-center justify-start">
-                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>
-                    </div>
-                    <div>
-                        <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Buat PPT</h3>
-                        <p class="text-xs text-slate-500 mt-2 leading-relaxed">Generator Presentasi PowerPoint dengan AI.</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- INTEGRASI SQL EDITOR DI DALAM DASHBOARD (MENGGUNAKAN DARI VERSI SEBELUMNYA) -->
-        <section id="sql-console" class="bg-slate-900 text-white rounded-2xl p-6 border border-slate-800 space-y-6">
+        <!-- ================= PANEL 1: GRID MENU UTAMA ================= -->
+        <div id="panelMenu" class="space-y-10">
             <div>
-                <span class="bg-indigo-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full font-mono uppercase">Neon Postgres Console</span>
-                <h2 class="text-xl font-bold mt-2">SQL Console Developer</h2>
-                <p class="text-xs text-slate-400">Jalankan perintah SQL kueri untuk memeriksa penyimpanan pendaftaran guru dan modul langsung ke database Neon.</p>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Asisten Administrasi Mengajar AI</h1>
+                <p class="text-sm text-slate-500 mt-1">Pilih modul kerja di bawah ini untuk memulai penyusunan otomatis berbasis AI.</p>
             </div>
 
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <!-- Input -->
-                <div class="lg:col-span-5 space-y-4">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <label class="block text-xs font-bold text-indigo-400 uppercase font-mono mb-2">Query</label>
-                        <textarea id="sqlQuery" rows="4" class="w-full bg-transparent border-0 focus:ring-0 font-mono text-sm text-emerald-400 resize-none outline-none" placeholder="SELECT * FROM users LIMIT 10;"></textarea>
-                    </div>
-                    <div class="flex gap-2">
-                        <button onclick="runQuery()" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-xs font-semibold transition">Run Query</button>
-                        <button onclick="clearQuery()" class="border border-slate-700 hover:bg-slate-800 px-4 py-2 rounded-lg text-xs transition text-slate-300">Clear</button>
+            <!-- Grid 9 Cards sesuai Gambar Acuan -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Card 1: RPE -->
+                <div onclick="openForm('rpe')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
+                    <span class="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Beta</span>
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-sky-500 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Generator RPE</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Rincian Pekan Efektif dari kalender akademik.</p>
+                        </div>
                     </div>
                 </div>
-                <!-- Output -->
-                <div class="lg:col-span-7 bg-slate-950 p-4 rounded-xl border border-slate-800 flex flex-col min-h-[180px]">
-                    <div class="text-xs font-bold text-slate-400 uppercase border-b border-slate-800 pb-2 mb-2 flex justify-between">
-                        <span>Output</span>
-                        <span id="rowCount" class="text-indigo-400 font-mono"></span>
+
+                <!-- Card 2: Analisis CP -->
+                <div onclick="openForm('cp')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-amber-500 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">Analisis CP</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Analisis Capaian Pembelajaran.</p>
+                        </div>
                     </div>
-                    <div class="flex-grow overflow-x-auto max-h-[150px]" id="resultContainer">
-                        <p class="text-xs text-slate-500 italic">Ketik kueri lalu klik Run Query.</p>
+                </div>
+
+                <!-- Card 3: Rencana Pembelajaran Mendalam -->
+                <div onclick="openForm('rpm')" class="bg-white p-6 rounded-2xl border-2 border-indigo-600 shadow-md hover:shadow-lg transition relative flex flex-col justify-between group cursor-pointer">
+                    <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white text-[9px] font-bold px-3 py-1 rounded-full uppercase tracking-wide flex items-center gap-1">
+                        🎓 Kemendikbudasmen
+                    </span>
+                    <div class="space-y-4 mt-2">
+                        <div class="w-12 h-12 text-indigo-600 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-indigo-600">Rencana Pembelajaran Mendalam</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">RPM lengkap Kurikulum Merdeka.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: RPP Cinta Kemenag -->
+                <div onclick="openForm('kemenag')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
+                    <span class="absolute -top-3 right-4 bg-emerald-500 text-white text-[9px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                        ★ Kemenag
+                    </span>
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-pink-500 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">RPP Cinta Kemenag</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Rencana Pelaksanaan Pembelajaran berbasis Cinta.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: RPM Kokurikuler -->
+                <div onclick="openForm('kokurikuler')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
+                    <span class="absolute top-4 right-4 bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Beta</span>
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-orange-500 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4zM14 16a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2v-4z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">RPM Kokurikuler</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">RPM Kegiatan Kokurikuler.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: LKPD -->
+                <div onclick="openForm('lkpd')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:border-indigo-500 hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-emerald-500 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900 group-hover:text-indigo-600 transition">LKPD</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Lembar Kerja Murid Kurikulum Merdeka.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7: Jurnal Harian -->
+                <div onclick="alert('Modul Jurnal Harian dalam tahap integrasi')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer opacity-70">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-teal-600 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Jurnal Harian</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Jurnal mengajar harian guru.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 8: Asesmen Lengkap -->
+                <div onclick="alert('Modul Asesmen Lengkap dalam tahap integrasi')" class="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition relative flex flex-col justify-between group cursor-pointer opacity-70">
+                    <div class="space-y-4">
+                        <div class="w-12 h-12 text-indigo-500 flex items-center justify-start">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-slate-900">Asesmen Lengkap</h3>
+                            <p class="text-xs text-slate-500 mt-2 leading-relaxed">Kisi-Kisi + Kartu Soal + Soal Sumatif.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <!-- SQL Console (Tetap di bawah Dashboard) -->
+            <div class="bg-slate-900 text-white p-6 rounded-2xl border border-slate-800">
+                <span class="text-indigo-400 font-mono text-xs uppercase">Neon Admin Console</span>
+                <h3 class="text-lg font-bold mt-1">Uji Kueri Database</h3>
+                <div class="mt-4 flex gap-4">
+                    <input type="text" id="sqlQuery" class="flex-grow bg-slate-950 border border-slate-800 rounded-lg p-2 font-mono text-xs text-emerald-400" placeholder="SELECT * FROM users LIMIT 5;">
+                    <button onclick="runQuery()" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-xs font-bold transition">Jalankan</button>
+                </div>
+                <div id="resultContainer" class="mt-4 text-xs font-mono text-slate-400 max-h-40 overflow-auto"></div>
+            </div>
+        </div>
+
+
+        <!-- ================= PANEL 2: CONTAINER FORM ISIAN GENERATOR (DINAMIS) ================= -->
+        <div id="panelForm" class="hidden space-y-6">
+            <!-- Navigasi Kembali -->
+            <button onclick="backToMenu()" class="inline-flex items-center gap-2 text-sm text-indigo-600 hover:text-indigo-800 font-semibold transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+                Kembali ke Dashboard
+            </button>
+
+            <!-- Card Pembungkus Formulir -->
+            <div class="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-sm max-w-4xl mx-auto space-y-8">
+                
+                <!-- HEADER FORMULIR -->
+                <div class="border-b border-slate-100 pb-4">
+                    <h2 class="text-2xl font-bold text-slate-950" id="formTitle">Formulir Isian</h2>
+                    <p class="text-sm text-slate-500 mt-1" id="formDesc">Lengkapi formulir untuk menyusun draf dokumen otomatis menggunakan AI.</p>
+                </div>
+
+                <form id="generatorForm" onsubmit="generateDocument(event)" class="space-y-6">
+                    <!-- Area Render Dynamic Inputs -->
+                    <div id="dynamicInputs" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+
+                    <!-- LOADING & OUTPUT PREVIEW -->
+                    <div id="generatorLoading" class="hidden text-center py-8">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600 mx-auto"></div>
+                        <p class="text-xs text-slate-500 mt-4">Kecerdasan Buatan sedang menyusun teks draf dokumen Anda...</p>
+                    </div>
+
+                    <div id="resultOutputWrapper" class="hidden space-y-4">
+                        <label class="block text-xs font-bold text-slate-700 uppercase">Pratinjau Hasil Dokumen (Markdown)</label>
+                        <textarea id="resultOutput" class="w-full h-64 p-4 border border-slate-200 rounded-lg font-mono text-xs text-slate-700 bg-slate-50" readonly></textarea>
+                        
+                        <div class="flex gap-2">
+                            <button type="button" onclick="downloadAsDocx()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg text-xs font-bold transition">Unduh ke MS Word (.doc)</button>
+                        </div>
+                    </div>
+
+                    <!-- ACTION BUTTON -->
+                    <div class="flex justify-end pt-4 border-t border-slate-100">
+                        <button type="submit" id="submitGenerateBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-xl text-sm transition">
+                            Generate Dokumen AI
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
 
     </main>
 
     <!-- FOOTER -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-        &copy; <script>document.write(new Date().getFullYear())</script> GuruSTUPA AI. Hak Cipta Dilindungi Undang-Undang.
+        &copy; <span id="currentYear"></span> GuruSTUPA AI. Hak Cipta Dilindungi Undang-Undang.
     </footer>
 
-    <!-- SCRIPT LOGIKA DASHBOARD -->
+    <!-- LOGIKA JAVASCRIPT KERJA FORM & INTEGRASI AI -->
     <script>
-        // Ambil Data Sesi Pengguna
-        const email = localStorage.getItem('userEmail');
-        const name = localStorage.getItem('userName') || 'Guru';
+        document.getElementById('currentYear').innerText = new Date().getFullYear();
+        
+        // Setup Identitas User
+        document.getElementById('profileName').innerText = localStorage.getItem('userName') || 'Guru Pengajar';
+        document.getElementById('profileEmail').innerText = localStorage.getItem('userEmail');
+        document.getElementById('avatarLetter').innerText = (localStorage.getItem('userName') || 'G').charAt(0).toUpperCase();
 
-        // Tampilkan Identitas Pengguna di Layar
-        document.getElementById('profileName').innerText = name;
-        document.getElementById('welcomeName').innerText = name;
-        document.getElementById('profileEmail').innerText = email;
-        document.getElementById('avatarLetter').innerText = name.charAt(0).toUpperCase();
+        let activeModule = '';
 
-        // Fungsi Logout Sesi
+        // Skema Desain Input Form Dinamis sesuai Gambar Acuan
+        const formSchemas = {
+            rpe: {
+                title: "Rincian Pekan Efektif (RPE)",
+                desc: "Unggah data sekolah dan mata pelajaran untuk menyusun Pekan Efektif Semester Ganjil & Genap.",
+                fields: [
+                    { label: "Nama Sekolah", name: "sekolah", type: "text", placeholder: "SD Merdeka", required: true },
+                    { label: "Kelas / Jenjang", name: "kelas", type: "text", placeholder: "Kelas VI", required: true },
+                    { label: "Mata Pelajaran", name: "mapel", type: "text", placeholder: "Matematika", required: true },
+                    { label: "Jam Pelajaran (JP) Per Pekan", name: "jp", type: "number", placeholder: "2", required: true },
+                    { label: "Pola Hari Kerja", name: "pola", type: "select", options: ["5 Hari (Senin - Jumat)", "6 Hari (Senin - Sabtu)"], required: true },
+                    { label: "Nama Kepala Sekolah", name: "kepsek", type: "text", placeholder: "Drs. Ahmad, M.Pd." },
+                    { label: "Nama Guru Mapel", name: "guru", type: "text", placeholder: "Nama Anda" }
+                ]
+            },
+            cp: {
+                title: "Analisis Capaian Pembelajaran (CP)",
+                desc: "Rancang pemecahan CP menjadi Tujuan Pembelajaran (TP) dan Alur Tujuan Pembelajaran (ATP).",
+                fields: [
+                    { label: "Mata Pelajaran", name: "mapel", type: "text", placeholder: "Matematika", required: true },
+                    { label: "Kelas / Fase", name: "kelas", type: "text", placeholder: "Kelas VII / Fase D", required: true },
+                    { label: "Jumlah Pekan Efektif (1 Tahun)", name: "pekan", type: "number", placeholder: "38", required: true },
+                    { label: "Elemen CP yang Dianalisis", name: "elemen", type: "text", placeholder: "Contoh: Bilangan dan Operasinya", required: true },
+                    { label: "Uraian Teks Capaian Pembelajaran", name: "cp_text", type: "textarea", placeholder: "Masukkan teks deskripsi CP di sini...", required: true }
+                ]
+            },
+            rpm: {
+                title: "Rencana Pembelajaran Mendalam",
+                desc: "Model pembelajaran mendalam komprehensif berstandar Kemendikbudasmen.",
+                fields: [
+                    { label: "Mata Pelajaran", name: "mapel", type: "text", placeholder: "Matematika", required: true },
+                    { label: "Kelas & Semester", name: "kelas", type: "text", placeholder: "Kelas X / Ganjil", required: true },
+                    { label: "Alokasi Waktu", name: "waktu", type: "text", placeholder: "2 x 45 Menit", required: true },
+                    { label: "Model Pembelajaran", name: "model", type: "select", options: ["Problem Based Learning (PBL)", "Project Based Learning (PjBL)", "Inquiry Learning"], required: true },
+                    { label: "Topik Utama Pembelajaran", name: "topik", type: "text", placeholder: "Persamaan Linear Satu Variabel", required: true },
+                    { label: "Tujuan Pembelajaran", name: "tujuan", type: "textarea", placeholder: "Tulis tujuan utama pembelajaran...", required: true }
+                ]
+            },
+            kemenag: {
+                title: "RPP Cinta Kemenag",
+                desc: "Rancangan pembelajaran adaptif berdasar nilai cinta, toleransi, dan moderasi beragama.",
+                fields: [
+                    { label: "Mata Pelajaran", name: "mapel", type: "text", placeholder: "Akidah Akhlak", required: true },
+                    { label: "Jenjang / Kelas", name: "kelas", type: "text", placeholder: "MTs / Kelas VII", required: true },
+                    { label: "Topik Utama", name: "topik", type: "text", placeholder: "Indahnya Berakhlak Terpuji", required: true },
+                    { label: "Karakter Cinta / Nilai Moderasi", name: "moderasi", type: "text", placeholder: "Toleransi dan Saling Menghargai", required: true },
+                    { label: "Identifikasi Hambatan Peserta Didik", name: "hambatan", type: "textarea", placeholder: "Kesiapan belajar bervariasi..." }
+                ]
+            },
+            kokurikuler: {
+                title: "RPM Kokurikuler (BETA)",
+                desc: "Penyusunan modul projek kokurikuler penguatan karakter profil pelajar pancasila.",
+                fields: [
+                    { label: "Satuan Pendidikan", name: "sekolah", type: "text", placeholder: "SMP Merdeka", required: true },
+                    { label: "Tema Utama Projek", name: "tema", type: "select", options: ["Gaya Hidup Berkelanjutan", "Kearifan Lokal", "Bhinneka Tunggal Ika", "Kewirausahaan"], required: true },
+                    { label: "Judul Projek", name: "judul", type: "text", placeholder: "Pengolahan Sampah Organik Menjadi Kompos", required: true },
+                    { label: "Dimensi Profil Pelajar Pancasila", name: "profil", type: "text", placeholder: "Gotong Royong, Kreatif", required: true }
+                ]
+            },
+            lkpd: {
+                title: "Lembar Kerja Peserta Didik (LKPD)",
+                desc: "Buat panduan aktivitas belajar siswa yang sistematis dan eksploratif.",
+                fields: [
+                    { label: "Mata Pelajaran", name: "mapel", type: "text", placeholder: "Matematika", required: true },
+                    { label: "Topik Pembelajaran", name: "topik", type: "text", placeholder: "Pembagian Pecahan", required: true },
+                    { label: "Indikator Capaian", name: "indikator", type: "text", placeholder: "Siswa mampu memecahkan soal cerita pecahan", required: true },
+                    { label: "Instruksi Aktivitas Siswa", name: "instruksi", type: "textarea", placeholder: "Tulis instruksi langkah kerja siswa...", required: true }
+                ]
+            }
+        };
+
+        // Buka Panel Form sesuai Modul yang Dipilih
+        function openForm(moduleKey) {
+            activeModule = moduleKey;
+            const schema = formSchemas[moduleKey];
+            
+            document.getElementById('panelMenu').classList.add('hidden');
+            document.getElementById('panelForm').classList.remove('hidden');
+
+            document.getElementById('formTitle').innerText = schema.title;
+            document.getElementById('formDesc').innerText = schema.desc;
+
+            // Render Input Dinamis
+            const inputsContainer = document.getElementById('dynamicInputs');
+            inputsContainer.innerHTML = '';
+            
+            document.getElementById('resultOutputWrapper').classList.add('hidden');
+            document.getElementById('resultOutput').value = '';
+
+            schema.fields.forEach(field => {
+                const wrapper = document.createElement('div');
+                wrapper.className = "flex flex-col space-y-1";
+
+                const label = document.createElement('label');
+                label.className = "text-xs font-bold text-slate-700 uppercase";
+                label.innerText = field.label + (field.required ? " *" : "");
+                wrapper.appendChild(label);
+
+                if (field.type === "select") {
+                    const input = document.createElement('select');
+                    input.name = field.name;
+                    input.required = field.required || false;
+                    input.className = "mt-1 block w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50";
+                    field.options.forEach(opt => {
+                        const o = document.createElement('option');
+                        o.value = opt;
+                        o.innerText = opt;
+                        input.appendChild(o);
+                    });
+                    wrapper.appendChild(input);
+                } else if (field.type === "textarea") {
+                    const input = document.createElement('textarea');
+                    input.name = field.name;
+                    input.rows = 4;
+                    input.required = field.required || false;
+                    input.placeholder = field.placeholder;
+                    input.className = "mt-1 block w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 resize-none outline-none focus:ring-2 focus:ring-indigo-500";
+                    wrapper.appendChild(input);
+                } else {
+                    const input = document.createElement('input');
+                    input.type = field.type;
+                    input.name = field.name;
+                    input.required = field.required || false;
+                    input.placeholder = field.placeholder;
+                    input.className = "mt-1 block w-full px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 outline-none focus:ring-2 focus:ring-indigo-500";
+                    wrapper.appendChild(input);
+                }
+
+                inputsContainer.appendChild(wrapper);
+            });
+        }
+
+        // Kembali ke Menu Utama
+        function backToMenu() {
+            document.getElementById('panelForm').classList.add('hidden');
+            document.getElementById('panelMenu').classList.remove('hidden');
+        }
+
+        // Proses Submit data ke OpenAI / Google AI Studio (Mock Simulator / API Direct Call)
+        async function generateDocument(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submitGenerateBtn');
+            const loading = document.getElementById('generatorLoading');
+            const resultWrapper = document.getElementById('resultOutputWrapper');
+            const resultTextArea = document.getElementById('resultOutput');
+
+            submitBtn.disabled = true;
+            loading.classList.remove('hidden');
+            resultWrapper.classList.add('hidden');
+
+            // Ekstrak Data Formulir
+            const formElement = document.getElementById('generatorForm');
+            const formData = new FormData(formElement);
+            const payload = {};
+            formData.forEach((value, key) => { payload[key] = value; });
+
+            // Susun Prompt sesuai dengan Parameter Isian Guru
+            let constructedPrompt = `Buatkan Dokumen Pendidikan untuk modul [${formSchemas[activeModule].title}] dengan parameter berikut:\n`;
+            for (const [key, val] of Object.entries(payload)) {
+                constructedPrompt += `- ${key.toUpperCase()}: ${val}\n`;
+            }
+            constructedPrompt += `\nOutput harus terstruktur rapi menggunakan format Markdown, memiliki tujuan operasional, langkah pengerjaan lengkap, dan kriteria penilaian.`;
+
+            try {
+                // Jalankan Query Menggunakan Driver Serverless Neon (Menyimpan Payload & Simulasi AI Generator)
+                const neonQuery = `INSERT INTO rpps (title, grade, subject, topic, duration, content, user_email) 
+                VALUES (
+                    'Draf ${formSchemas[activeModule].title}', 
+                    '${payload.kelas || "Umum"}', 
+                    '${payload.mapel || "Pendidikan"}', 
+                    '${payload.topik || "Umum"}', 
+                    '${payload.waktu || "Satu Kali Pertemuan"}', 
+                    '${constructedPrompt.replace(/'/g, "''")}', 
+                    '${localStorage.getItem('userEmail')}'
+                ) RETURNING *;`;
+
+                // Simpan Riwayat Request ke Neon DB
+                await fetch('/api/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ query: neonQuery })
+                });
+
+                // Simulasi AI Engine Generator berbasis template pendidik
+                setTimeout(() => {
+                    const mockAIGeneratedText = `# DOKUMEN: ${formSchemas[activeModule].title.toUpperCase()}
+# SEKOLAH/MAPEL: ${payload.sekolah || payload.mapel || "Pendidikan"}
+
+## 1. INFORMASI UMUM
+- Target Kelas: ${payload.kelas || "Umum"}
+- Durasi: ${payload.waktu || "Satu Kali Pertemuan"}
+- Penyusun: ${payload.guru || localStorage.getItem('userName')}
+
+## 2. KOMPONEN INTI
+- Topik Pembelajaran: ${payload.topik || payload.tema || "Pengembangan Karakter"}
+- Deskripsi: Draf pembelajaran ini dirancang menggunakan asisten kecerdasan buatan GuruSTUPA AI untuk memfasilitasi proses penyampaian materi secara dinamis, inklusif, dan interaktif.
+
+## 3. LANGKAH-LANGKAH AKTIVITAS MENGUASAI MATERI
+1. **Kegiatan Pendahuluan (15 Menit)**: Guru mengkondisikan kelas, melakukan apersepsi terkait topik, dan menyampaikan tujuan pembelajaran hari ini.
+2. **Kegiatan Inti (50 Menit)**: Peserta didik berkelompok mengeksplorasi modul, berdiskusi memecahkan masalah kontekstual yang disajikan guru.
+3. **Kegiatan Penutup (15 Menit)**: Melakukan refleksi bersama, menyimpulkan hasil esensial pembelajaran, dan memberikan tugas formatif mandiri.
+
+## 4. ASESMEN & KRITERIA PENILAIAN
+- **Formatif**: Melalui penilaian observasi sikap kolaboratif siswa saat diskusi kelompok.
+- **Sumatif**: Melalui lembar evaluasi tertulis mandiri di akhir bab.`;
+
+                    resultTextArea.value = mockAIGeneratedText;
+                    loading.classList.add('hidden');
+                    resultWrapper.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                }, 2500);
+
+            } catch (err) {
+                alert('Gagal menghubungkan ke database Neon untuk merekam riwayat.');
+                loading.classList.add('hidden');
+                submitBtn.disabled = false;
+            }
+        }
+
+        // UNDUH LANGSUNG KE FORMAT MICROSOFT WORD (.DOC) TANPA DEPENDENCY BERAT
+        function downloadAsDocx() {
+            const content = document.getElementById('resultOutput').value;
+            const title = formSchemas[activeModule].title;
+            
+            // Konversi teks sederhana ke bentuk HTML agar bisa dibaca rapi oleh MS Word
+            const formattedHtml = content
+                .replace(/\n/g, "<br>")
+                .replace(/# (.*)/g, "<h1>$1</h1>")
+                .replace(/## (.*)/g, "<h2>$1</h2>")
+                .replace(/\*\*(.*)\*\*/g, "<strong>$1</strong>");
+
+            const header = "<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'><head><title>Draf Dokumen</title><style>body { font-family: 'Arial', sans-serif; line-height: 1.6; }</style></head><body>";
+            const footer = "</body></html>";
+            const sourceHTML = header + formattedHtml + footer;
+            
+            const dataType = 'application/msword';
+            const blob = new Blob(['\ufeff' + sourceHTML], { type: dataType });
+            
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = title + '.doc'; // MS Word mengenali format .doc HTML ini dengan sangat bersih
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+
+        // Sesi Keluar
         function logout() {
             localStorage.clear();
             window.location.href = 'login.html';
         }
 
-        // Script SQL Console
-        function clearQuery() {
-            document.getElementById('sqlQuery').value = '';
-        }
-
+        // SQLite & Neon Console Script
         async function runQuery() {
             const query = document.getElementById('sqlQuery').value;
             const container = document.getElementById('resultContainer');
-            const rowCountLabel = document.getElementById('rowCount');
-
-            if (!query.trim()) {
-                alert('Tulis query SQL terlebih dahulu.');
-                return;
-            }
-
-            container.innerHTML = '<span class="text-xs text-yellow-500 font-mono">Memproses query ke Neon...</span>';
-            rowCountLabel.innerText = '';
-
+            if(!query.trim()) return;
+            container.innerText = "Memproses...";
             try {
                 const res = await fetch('/api/query', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ query })
                 });
-
                 const data = await res.json();
-                if (!res.ok) {
-                    container.innerHTML = `<span class="text-xs text-red-400 font-mono">Error: ${data.error}</span>`;
-                    return;
+                if(res.ok) {
+                    container.innerText = JSON.stringify(data.rows, null, 2);
+                } else {
+                    container.innerText = "Error: " + data.error;
                 }
-
-                if (data.rows.length === 0) {
-                    container.innerHTML = '<span class="text-xs text-slate-500 font-mono">Query sukses dieksekusi. Tidak ada baris data dikembalikan.</span>';
-                    rowCountLabel.innerText = `Baris terdampak: ${data.rowCount || 0}`;
-                    return;
-                }
-
-                rowCountLabel.innerText = `Total: ${data.rows.length} Baris`;
-
-                let tableHtml = `<table class="min-w-full divide-y divide-slate-800 text-left font-mono text-xs text-slate-300">
-                    <thead class="bg-slate-900 text-slate-400">
-                        <tr>`;
-                
-                data.fields.forEach(field => {
-                    tableHtml += `<th class="px-3 py-2 border border-slate-800">${field}</th>`;
-                });
-                tableHtml += `</tr></thead><tbody>`;
-
-                data.rows.forEach(row => {
-                    tableHtml += `<tr>`;
-                    data.fields.forEach(field => {
-                        let cellVal = row[field];
-                        if (typeof cellVal === 'object' && cellVal !== null) cellVal = JSON.stringify(cellVal);
-                        tableHtml += `<td class="px-3 py-2 border border-slate-800 whitespace-nowrap">${cellVal !== null ? cellVal : 'NULL'}</td>`;
-                    });
-                    tableHtml += `</tr>`;
-                });
-
-                tableHtml += `</tbody></table>`;
-                container.innerHTML = tableHtml;
-
-            } catch (err) {
-                container.innerHTML = `<span class="text-xs text-red-400 font-mono">Koneksi backend terputus.</span>`;
+            } catch(e) {
+                container.innerText = "Koneksi terputus.";
             }
         }
     </script>
